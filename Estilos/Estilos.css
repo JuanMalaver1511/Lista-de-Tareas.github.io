@@ -20,6 +20,14 @@ body {
 .roundBorder {
     border-radius: 5px;
 }
+.date #name{
+    margin-top: 60px;
+    position: absolute;
+    font-weight: bold;
+    color:#D33F49;
+    font-size: 25px;
+
+}
 
 .list {
     margin: 25px auto;

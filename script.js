@@ -3,6 +3,9 @@ const dateNumber = document.getElementById('dateNumber');
 const dateText = document.getElementById('dateText');
 const dateMonth = document.getElementById('dateMonth');
 const dateYear = document.getElementById('dateYear');
+const Nombre = document.getElementById('name')
+
+
 
 // Tasks Container
 const tasksContainer = document.getElementById('tasksContainer');
@@ -13,6 +16,8 @@ const setDate = () => {
     dateText.textContent = date.toLocaleString('es', { weekday: 'long' });
     dateMonth.textContent = date.toLocaleString('es', { month: 'short' });
     dateYear.textContent = date.toLocaleString('es', { year: 'numeric' });
+    Nombre.textContent  = prompt("Ingrese su nombre: ");
+    
 };
 
 const addNewTask = event => {
@@ -31,12 +36,14 @@ const changeTaskState = event => {
     event.target.classList.toggle('done');
 };
 
+
 const order = () => {
     const done = [];
     const toDo = [];
     tasksContainer.childNodes.forEach( el => {
         el.classList.contains('done') ? done.push(el) : toDo.push(el)
     })
+    
     return [...toDo, ...done];
 }
 
