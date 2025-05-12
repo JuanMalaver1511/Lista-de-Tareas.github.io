@@ -69,7 +69,11 @@ const downloadTasks = () => {
     
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'mis_tareas.txt';
+    const date = new Date();
+const day = date.getDate().toString().padStart(2, '0');
+const month = (date.getMonth() + 1).toString().padStart(2, '0');
+const year = date.getFullYear();
+link.download = `mis_tareas_${day}-${month}-${year}.txt`;
     link.click();
     
     URL.revokeObjectURL(url);
