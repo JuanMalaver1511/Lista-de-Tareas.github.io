@@ -16,7 +16,9 @@ const setDate = () => {
     dateText.textContent = date.toLocaleString('es', { weekday: 'long' });
     dateMonth.textContent = date.toLocaleString('es', { month: 'short' });
     dateYear.textContent = date.toLocaleString('es', { year: 'numeric' });
-    Nombre.textContent  = prompt("Ingrese su nombre: ");
+    document.getElementById('name').textContent = prompt("Ingrese su nombre: ");
+
+
     
 };
 
@@ -52,3 +54,26 @@ const renderOrderedTasks = () => {
 }
 
 setDate();
+
+const downloadTasks = () => {
+    const tasks = [];
+    tasksContainer.childNodes.forEach(el => {
+        if (el.textContent.trim()) {
+            const status = el.classList.contains('done') ? '[✔]' : '[ ]';
+            tasks.push(`${status} ${el.textContent.trim()}`);
+        }
+    });
+
+    const blob = new Blob([tasks.join('\n')], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'mis_tareas.txt';
+    link.click();
+    
+    URL.revokeObjectURL(url);
+};
+
+// Asociar evento al botón de terminar
+document.getElementById('finishButton').addEventListener('click', downloadTasks);
